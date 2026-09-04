@@ -1,7 +1,7 @@
 
 const Kursy = (props) => {
     return <div>
-      <h2>Liczba kursów: </h2>
+      <h2>Liczba kursów: {props.kursy.length}</h2>
       {
         
       }
