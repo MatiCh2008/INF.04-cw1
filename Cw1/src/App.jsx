@@ -3,7 +3,7 @@ const Kursy = (props) => {
     return <div>
       <h2>Liczba kursów: </h2>
       {
-        props.dane[1]
+        
       }
     </div>
 }
