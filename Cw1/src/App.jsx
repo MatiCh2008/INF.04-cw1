@@ -10,9 +10,26 @@ function App() {
     'Kurs Django'
   ]);
 
+  const [nameAndSurname, setNameAndSurname] = useState();
+  const [courseNumber, setCourseNumber] = useState();
+
+  const onNameAndSurnameChange = (event) => {
+    setNameAndSurname(event.target.value);
+  };
+
+  const onCourseNumberChange = (event) => {
+    setCourseNumber(event.target.value);
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log("Submit");
+    console.log(nameAndSurname);
+    if(courses[courseNumber - 1]) {
+      console.log(courses[courseNumber-1]);
+    } else {
+      console.log("Nieprawidłowy numer kursu");
+    }
+
   }
 
   return (
@@ -25,11 +42,15 @@ function App() {
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="name-and-surname">Imię i nazwisko:</label>
-          <input className="form-control" type="text" id="name-and-surname" />
+          <input 
+          onChange={onNameAndSurnameChange}
+          className="form-control" 
+          type="text" 
+          id="name-and-surname" />
         </div>
         <div className="form-group">
           <label htmlFor="course-number">Numer kursu:</label> 
-          <input className="form-control" type="number" id="course-number" />         
+          <input onChange={onCourseNumberChange} className="form-control" type="number" id="course-number" />         
         </div>       
 
         <button className="btn btn-primary">Zapisz do kursu</button> 
