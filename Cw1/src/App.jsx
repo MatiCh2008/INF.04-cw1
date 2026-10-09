@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import { useState } from 'react';
 
 const App = () => {
 
@@ -8,14 +9,12 @@ const App = () => {
     cena: 3499.99
   }
 
-  const onVisibilityChange = (event) => {
-    if (event.target.checked == true){
-      console.log("Szczegóły: true")      
-    }
+  const [pokazSzczegoly, setPokazSzczegoly] = useState(false)
 
-    else {
-      console.log("Szczegóły: false")
-    }
+  const onVisibilityChange = (event) => {
+    const isChecked = event.target.checked;
+    console.log(`Szczegóły: ${isChecked}`);
+    setPokazSzczegoly(isChecked);
   }
 
   return (
@@ -26,13 +25,16 @@ const App = () => {
           <label className="form-check-label" htmlFor="pokazSzczegoly">Pokaż szczegóły</label>
         </div>
 
-        <div className="card" style={{ width: '18rem' }}>
-          <div className="card-body">
-            <h5 className="card-title">{ produkt.nazwa }</h5>
-            <p className="card-text">{ produkt.opis }</p>
-            <p className="card-price">Cena: { produkt.cena } zł</p>            
-          </div>
-        </div>
+        {pokazSzczegoly && (
+          <div className="card" style={{ width: '18rem' }}>
+            <div className="card-body">
+              <h5 className="card-title">{ produkt.nazwa }</h5>
+              <p className="card-text">{ produkt.opis }</p>
+              <p className="card-price">Cena: { produkt.cena } zł</p>            
+            </div>  
+          </div>                    
+        )}
+
 
     </div>
   )
