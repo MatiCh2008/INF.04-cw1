@@ -1,7 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import { useState } from 'react';
+
 const App = () => {
   return (
     <div>
-      <p>Hello world</p>
+      <h2>Kalkulator biletów</h2>
     </div>
   )
 }
