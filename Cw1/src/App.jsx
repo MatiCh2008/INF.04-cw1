@@ -47,12 +47,16 @@ const App = () => {
     osoba.toLowerCase().includes(wpisanyTekst.toLowerCase())
   );
 
-    // Aktualizacja stanu listy (i tym samym wskaźnika)
     setPrzefiltrowaneOsoby(wyniki);
 
-    // Wyświetlenie komunikatu w konsoli przeglądarki
     console.log(`Wyniki: ${wyniki.length}`);
 
+  }
+
+  const onWyczyscClick = () => {
+    setSzukaj('');
+    setPrzefiltrowaneOsoby(osoby)
+    console.log(`Wyniki: ${osoby.length}`);
   }
 
   return (
@@ -60,13 +64,18 @@ const App = () => {
       <h2>Wyszukiwarka nazwisk</h2>
       <label htmlFor='szukaj' className='form-label'>Szukaj: </label>
       <div className='input-group'>
-        <input type='text' className='form-control' id='szukaj' onChange={onSzukajChange}/>
-        <button type='button' className='btn btn-outline-secondary'>Wyczyść</button>
+        <input type='text' className='form-control' id='szukaj' onChange={onSzukajChange} value={szukaj}/>
+        <button type='button' className='btn btn-outline-secondary' onClick={onWyczyscClick}>Wyczyść</button>
       </div>
       <p>Liczba wyników: {przefiltrowaneOsoby.length}</p>
-      <ol className='list-group list-group-numbered'>
-        {przefiltrowaneOsoby.map(osoba => (<li key={osoba} className='list-group-item'>{osoba}</li>))}
-      </ol>
+      {przefiltrowaneOsoby.length > 0 ? (
+        <ol className='list-group list-group-numbered'>
+          {przefiltrowaneOsoby.map(osoba => (<li key={osoba} className='list-group-item'>{osoba}</li>))}
+        </ol>        
+      ) : (
+        <div className='alert alert-warning' role='alert'>Brak wyników</div>
+      )}
+
 
     </div>
   )
