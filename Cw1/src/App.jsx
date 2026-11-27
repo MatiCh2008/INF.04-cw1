@@ -1,7 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.css';
+
 const App = () => {
   return (
     <div>
-      <p>Hello world</p>
+      <h2>Hello world</h2>
     </div>
   )
 }
